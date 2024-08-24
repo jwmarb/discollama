@@ -9,30 +9,33 @@
 ## Run `discollama.py`
 
 ```
-DISCORD_TOKEN=xxxxx docker compose up
+docker compose up
 ```
+
+> The port `11435` must not be used by the host. If you want to use another port, change it in `.env`.
 
 > Note: You must setup a [Discord Bot](https://discord.com/developers/applications) and set environment variable `DISCORD_TOKEN` before `discollama.py` can access Discord.
 
 `discollama.py` requires an [Ollama](https://github.com/jmorganca/ollama) server. Follow the steps in [jmorganca/ollama](https://github.com/jmorganca/ollama) repository to setup Ollama.
 
-By default, it uses `127.0.0.1:11434` which can be overwritten with `OLLAMA_HOST`.
+By default, it uses `127.0.0.1:11435` which can be overwritten with `OLLAMA_HOST`.
 
 > Note: Deploying this on Linux requires updating network configurations and `OLLAMA_HOST`.
 
 ## Customize `discollama.py`
 
-The default LLM is `mike/discollama`. A custom personality can be added by changing the `SYSTEM` instruction in the Modelfile and running `ollama create`:
+The default LLM is `phi3.5`. To change the model, you can edit it in `.env`
+
+To use a custom model with a custom system prompt:
 
 ```
 ollama create mymodel -f Modelfile
 ```
 
-This can be changed in `compose.yaml`:
+This can be changed in `.env`:
 
 ```
-environment:
-  - OLLAMA_MODEL=mymodel
+OLLAMA_MODEL=mymodel
 ```
 
 See [jmorganca/ollama](https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md) for more details.
