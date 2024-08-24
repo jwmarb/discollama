@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 # piggy back on the logger discord.py set up
 logging = getLogger("discord.discollama")
 
-load_dotenv()
+# load_dotenv()
 
 
 class Response:
