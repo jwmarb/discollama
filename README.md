@@ -6,6 +6,19 @@
 
 - Docker and Docker Compose
 
+## Setting up environment variables
+
+Copy `.env.sample` as a file named `.env`. Change your variables accordingly.
+
+| Variable | Description |
+| -------- | ----------- |
+
+| **DISCORD_TOKEN** | The bot's discord token which can be found under the Bot category in discord developers |
+
+| **REDIS_PORT** | The port of the redis server |
+| **OLLAMA_MODEL** | The ollama model to use (e.g. phi3.5, llama3.1, gemma2:27b) |
+| **OLLAMA_HOST** | The host of the ollama server. By default, it is `127.0.0.1` |
+
 ## Run `discollama.py`
 
 ```
