@@ -5,18 +5,18 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment:
-      - DISCORD_TOKEN=
-      - OLLAMA_HOST
-      - OLLAMA_PORT=11434
-      - OLLAMA_MODEL=phi3.5
-      - REDIS_PORT=11435
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - OLLAMA_HOST=${OLLAMA_HOST}
+      - OLLAMA_PORT=${OLLAMA_PORT}
+      - OLLAMA_MODEL=${OLLAMA_MODEL}
+      - REDIS_PORT=${REDIS_PORT}
     network_mode: 'host'
   redis:
     image: redis:alpine
-    command: --port 11435
+    command: --port ${REDIS_PORT}
     restart: always
     volumes:
       - /data
     ports:
-      - 11435
+      - ${REDIS_PORT}
     network_mode: 'host'
