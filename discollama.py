@@ -42,12 +42,8 @@ class Response:
             await self.r.edit(content=value + end)
             return
 
-        # if self.channel.type == discord.ChannelType.text:
-        #     self.channel = await self.channel.create_thread(
-        #         name="Discollama Says", message=self.message, auto_archive_duration=60
-        #     )
-
-        print(self.channel)
+        if self.channel.type == discord.ChannelType.text:
+            self.channel = await self.channel.create_thread(name="Discollama Says", message=self.message, auto_archive_duration=60)
 
         self.r = await self.channel.send(value)
 
@@ -66,7 +62,7 @@ class Discollama:
     async def on_ready(self):
         activity = discord.Activity(
             name="Discollama",
-            state="certified james hater",
+            state="\"Any day is a good day for a pop quiz!\"",
             type=discord.ActivityType.custom,
         )
         await self.discord.change_presence(activity=activity)
@@ -122,7 +118,7 @@ class Discollama:
 
         async for part in self.generate(content, context):
             task.cancel()
-
+         
             await r.write(part["response"], end="...")
 
         await r.write("")
@@ -149,6 +145,7 @@ class Discollama:
             keep_alive=-1,
             stream=True,
         ):
+            print(part)
             sb.write(part["response"])
 
             if part["done"] or datetime.now() - t > timedelta(seconds=1):
