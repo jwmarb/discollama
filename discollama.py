@@ -145,7 +145,6 @@ class Discollama:
             keep_alive=-1,
             stream=True,
         ):
-            print(part)
             sb.write(part["response"])
 
             if part["done"] or datetime.now() - t > timedelta(seconds=1):
